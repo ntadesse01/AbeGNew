@@ -9,7 +9,7 @@ const serviceSchema = {
     serviceDescription: z
       .string()
       .min(10, { message: "Service description must be at least 10 characters long" })
-      .max(100, { message: "Service description must be no longer than 100 characters" }),
+      .max(255, { message: "Service description must be no longer than 255characters" }),
   }),
 
   update: z.object({
@@ -21,7 +21,7 @@ const serviceSchema = {
     serviceDescription: z
       .string()
       .min(10, { message: "Service description must be at least 10 characters long" })
-      .max(100, { message: "Service description must be no longer than 100 characters" })
+      .max(255, { message: "Service description must be no longer than 255 characters" })
       .optional(),
   }),
 };
