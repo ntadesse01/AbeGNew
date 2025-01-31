@@ -1,0 +1,160 @@
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CompanyRole {
+  id Int @id @default(autoincrement())
+  name String @unique
+  createdAt DateTime @default(now())
+  employeeRole EmployeeRole?
+}
+
+model Employee {
+id Int @id @default(autoincrement())
+email String @unique
+activeStatus Int
+createdAt DateTime @default(now())
+employInfo EmployeeInfo?
+employeePassword EmployeePassword?
+employeeRole EmployeeRole?
+order Order[]
+}
+
+model EmployeeInfo{
+id Int @id @default(autoincrement())
+employeeId Int @unique
+createdAt DateTime @default(now())
+firstName String @db.VarChar(255)
+lastName String @db.VarChar(255)
+phone String  @db.VarChar(15) @unique
+employee Employee @relation(fields: [employeeId], references: [id])
+}
+
+model EmployeePassword {
+  id Int @id @default(autoincrement())
+  employeeId Int @unique
+  createdAt DateTime @default(now())
+  employeePasswordHashed String @db.VarChar(255)
+  employee Employee @relation(fields: [employeeId], references: [id])
+}
+
+ model EmployeeRole {
+  id Int @id @default(autoincrement())
+  employeeId Int @unique
+  createdAt DateTime @default(now())
+  companyRoleId Int @unique
+  employee Employee @relation(fields: [employeeId], references: [id])
+  companyRole CompanyRole @relation(fields: [companyRoleId],references: [id])
+ }
+
+ model CustomerIdentifier {
+  id Int @id @default(autoincrement())
+  email String @unique
+  phone String @db.VarChar(15)
+  createdAt DateTime @default(now())
+  customerHash String @db.VarChar(255)
+  customerInfo CustomerInfo?
+  customerVehicleInfo CustomerVehicleInfo[]
+  order Order[]
+   
+ }
+
+ model CustomerInfo {
+  id Int @id @default(autoincrement())
+  customerId Int @unique
+  createdAt DateTime @default(now())
+  firstName String @db.VarChar(255)
+  lastName String @db.VarChar(255)
+  customerStatus Int
+  customerIdentifier CustomerIdentifier @relation(fields: [customerId],references: [id])
+ }
+
+model CustomerVehicleInfo {
+   id Int @id @default(autoincrement())
+   customerId Int 
+   createdAt DateTime @default(now())
+   vehicleYear Int
+   vehicleMake String @db.VarChar(255)
+   vehicleModel String @db.VarChar(255)
+   vehicleType String @db.VarChar(255)
+   vehicleMileage Int
+   vehicleTag String @db.VarChar(255)
+   vehicleSerial String @db.VarChar(255)
+   vehicleColor String @db.VarChar(255)
+    order Order[]
+   customerIdentifier CustomerIdentifier @relation(fields: [customerId],references: [id])
+}
+ 
+model Order{
+  id Int @id @default(autoincrement())
+  employeeId Int
+  createdAt DateTime @default(now())
+  customerId Int
+  vehicleId Int
+  orderDate DateTime @default(now())
+  activeOrder Int
+  orderHash String @db.VarChar(255)
+  orderInfo OrderInfo?
+  orderService OrderService[]
+  orderStatus OrderStatus?
+  employee Employee @relation(fields: [employeeId],references: [id])
+  customerIdentifier CustomerIdentifier @relation(fields: [customerId],references: [id])
+  customerVehicleInfo CustomerVehicleInfo @relation(fields: [vehicleId],references: [id])
+
+}
+
+model OrderInfo {
+   id Int @id @default(autoincrement())
+   orderId Int @unique
+   orderTotalPrice Int
+   createdAt DateTime @default(now())
+   estimatedCompletionDate DateTime @default(now())
+  completionDate  DateTime?
+  additionalRequest String
+  notesForInternalUse String
+  notesForCustomer String
+  additionalRequestsCompleted Int
+  order Order  @relation(fields: [orderId],references: [id])
+
+}
+ 
+model OrderService{
+  id Int @id @default(autoincrement())
+  orderId Int
+  serviceId Int
+  createdAt DateTime @default(now())
+  serviceCompleted Int
+  order Order @relation(fields:[orderId],references:[id])
+  commonServices CommonServices @relation(fields: [serviceId],references: [id])
+
+}
+ 
+model OrderStatus {
+  id Int @id @default(autoincrement())
+  orderId Int @unique
+  orderStatus Int 
+  createdAt DateTime @default(now())
+  order Order @relation(fields: [orderId],references: [id])
+
+}
+
+model CommonServices{
+   id Int @id @default(autoincrement())
+   serviceName String @db.VarChar(225)
+   serviceDescription String
+   createdAt DateTime @default(now())
+   orderService OrderService[]
+}
+
+ 
+
+
+
+
+
