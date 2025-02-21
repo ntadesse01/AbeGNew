@@ -8,7 +8,7 @@ import LogIn from "../pages/Login/LogIn";
 import Services from "../pages/Services/Services";
 import OrderDetail from "../pages/OrderDetail/OrderDetail";
 import Contact from "../pages/Contact/Contact";
-import AddCustomer from "../pages/Admin/AddCustomer"
+import AddCustomer from "../pages/Admin/AddCustomer";
 import NewOrderStep1 from "../pages/Admin/Order/NewOrderStep1";
 import NewOrderStep2 from "../pages/Admin/Order/NewOrderStep2";
 import NewOrderStep3 from "../pages/Admin/Order/NewOrderStep3";
@@ -21,34 +21,43 @@ import Customers from "../pages/Admin/Customers";
 import EmployeeEdit from "../pages/Admin/EmployeeEdit";
 import Employees from "../pages/Admin/Employees";
 import ServicesManage from "../pages/Admin/ServicesManage";
- 
- 
- 
+import About from "../pages/About/About";
+import PublicLayout from "../layout/PublicLayout";
+import PrivateLayout from "../layout/PrivateLayout";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LogIn />} />
-      <Route path="/Services" element={<Services />} />
-      <Route path="/OrderDetail" element={<OrderDetail />} />
-      <Route path="/Contact" element={<Contact />} />
-      <Route path="/AddCustomer" element={<AddCustomer />} />
-      <Route path="/NewOrderStep1" element={<NewOrderStep1 />}/>
-      <Route path="/NewOrderStep2" element={<NewOrderStep2 />}/>
-      <Route path="NewOrderStep3" element={<NewOrderStep3 />}/>
-      <Route path="NewOrderStep4" element={<NewOrderStep4 /> }/>
-      <Route path="Orders" element={<Orders />}/>
-      <Route path="AddCustomer" element={<AddCustomer />}/>
-      <Route path="AddEmployee" element={<AddEmployee />}/>
-      <Route path="AddVehicle" element={<AddVehicle />}/>
-      <Route path="Admin" element={<Admin />}/>
-      <Route path="CustomerEdit" element={<CustomerEdit />}/>
-      <Route path="CustomerProfile" element={<CustomerProfile />}/>
-      <Route path="Customers" element={<Customers />} />
-      <Route path="EmployeeEdit" element={<EmployeeEdit />}/>
-      <Route path="Employees" element={<Employees />}/>
-      <Route path="ServicesManage" element={<ServicesManage />}/>
+      <Route path="/" element={<><PublicLayout/> </>}>
+        {/* public pages */}
+
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/order-detail" element={<OrderDetail />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+      {/* Private Pages */}
+      <Route path="/" element={<><PrivateLayout/> </>}>
+        <Route path="/add-customer" element={<AddCustomer />} />
+        <Route path="/new-order-step1" element={<NewOrderStep1 />} />
+        <Route path="/new-order-step2" element={<NewOrderStep2 />} />
+        <Route path="/new-order-step3" element={<NewOrderStep3 />} />
+        <Route path="/new-order-step4" element={<NewOrderStep4 />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/add-customer" element={<AddCustomer />} />
+        <Route path="/add-employee" element={<AddEmployee />} />
+        <Route path="/add-vehicle" element={<AddVehicle />} />
+        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/CustomerEdit" element={<CustomerEdit />}/> */}
+        {/* <Route path="/CustomerProfile" element={<CustomerProfile />}/> */}
+        <Route path="/customers" element={<Customers />} />
+        <Route path="/employee-edit" element={<EmployeeEdit />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/services-manage" element={<ServicesManage />} />
+      </Route>
+      {/* admin pages */}
     </>
   )
 );
