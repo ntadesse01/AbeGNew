@@ -116,9 +116,9 @@ model OrderInfo {
    createdAt DateTime @default(now())
    estimatedCompletionDate DateTime @default(now())
   completionDate  DateTime?
-  additionalRequest String
-  notesForInternalUse String
-  notesForCustomer String
+  additionalRequest String?
+  notesForInternalUse String?
+  notesForCustomer String?
   additionalRequestsCompleted Int
   order Order  @relation(fields: [orderId],references: [id])
 
@@ -141,7 +141,6 @@ model OrderStatus {
   orderStatus Int 
   createdAt DateTime @default(now())
   order Order @relation(fields: [orderId],references: [id])
-
 }
 
 model CommonServices{

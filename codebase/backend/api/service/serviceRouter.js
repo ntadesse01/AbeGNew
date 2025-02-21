@@ -3,11 +3,11 @@ import serviceController from "./serviceController.js"
 
 const serviceRouter = Router()
 
-employeeRouter.post("/",serviceController.create)
-employeeRouter.patch("/",serviceController.update)
-employeeRouter.delete("/:id",serviceController.delete)
-employeeRouter.get("/:id",serviceController.getSingle)
-employeeRouter.get("/",serviceController.getAll)
+serviceRouter.post("/",serviceController.create)
+serviceRouter.patch("/",serviceController.update)
+serviceRouter.delete("/:id",serviceController.delete)
+serviceRouter.get("/:id",serviceController.getSingle)
+serviceRouter.get("/",serviceController.getAll)
 
 
 
