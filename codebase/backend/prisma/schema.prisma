@@ -12,7 +12,7 @@ model CompanyRole {
   id Int @id @default(autoincrement())
   name String @unique
   createdAt DateTime @default(now())
-  employeeRole EmployeeRole?
+  employeeRole EmployeeRole[]
 }
 
 model Employee {
@@ -22,7 +22,7 @@ activeStatus Int
 createdAt DateTime @default(now())
 employInfo EmployeeInfo?
 employeePassword EmployeePassword?
-employeeRole EmployeeRole?
+employeeRole EmployeeRole[]
 order Order[]
 }
 
@@ -46,11 +46,14 @@ model EmployeePassword {
 
  model EmployeeRole {
   id Int @id @default(autoincrement())
-  employeeId Int @unique
+  employeeId Int
+  companyRoleId Int
   createdAt DateTime @default(now())
-  companyRoleId Int @unique
+
   employee Employee @relation(fields: [employeeId], references: [id])
-  companyRole CompanyRole @relation(fields: [companyRoleId],references: [id])
+  companyRole CompanyRole @relation(fields: [companyRoleId], references: [id])
+
+  @@unique([employeeId, companyRoleId])  // Composite unique constraint
  }
 
  model CustomerIdentifier {

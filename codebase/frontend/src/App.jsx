@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import { router } from "./router/router";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="text-red-500 text-5xl font-bold ml-4 pt-10">
-      Hello world</div>
-  )
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
-export default App
+export default App;

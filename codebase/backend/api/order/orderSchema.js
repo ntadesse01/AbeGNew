@@ -1,63 +1,60 @@
 import { z } from "zod";
-//order creation
 
+// Order creation schema
 const orderSchema = {
+  // Schema for creating an order
   create: z.object({
-    employeeId: z.number({ message: "Employee ID is required" }),
-    customerId: z.number({ message: "customer ID is required" }),
-    vehicleId: z.number({ message: "Vehicle ID is required" }),
-    activeOrder: z.number({ message: "active order status required" }),
+    employeeId: z.number().min(1, { message: "Employee ID is required" }),
+    customerId: z.number().min(1, { message: "Customer ID is required" }),
+    vehicleId: z.number().min(1, { message: "Vehicle ID is required" }),
+    activeOrder: z.number().min(0, { message: "Active order status is required" }),
     orderInfo: z.object({
-      orderTotalPrice: z.number({ message: "invalid total price" }),
-      estimatedCompletionDate: z.string({ message: "invalid estimated date" }),
-      completionDate: z.string({ message: "invalid completion date" }),
-      additionalRequest: z.string({ message: "invalid request" }),
-      notesForInternalUse: z.string({ message: "invalid note" }),
-      notesForCustomer: z.string({ message: "invalid customer note" }),
-      additionalRequestsCompleted: z.number({ message: "invalid request" }),
+      orderTotalPrice: z.number().min(0, { message: "Invalid total price" }),
+      estimatedCompletionDate: z.string().nonempty({ message: "Invalid estimated date" }),
+      completionDate: z.string().nonempty({ message: "Invalid completion date" }),
+      additionalRequest: z.string().optional(),
+      notesForInternalUse: z.string().optional(),
+      notesForCustomer: z.string().optional(),
+      additionalRequestsCompleted: z.number().min(0, { message: "Invalid request" }).optional(),
     }),
-    orderService:z.array(
+    orderService: z.array(
       z.object({
-        serviceId:z.number({ message: "service is required" }).min(0, {
-          message:
-            "service completion status must be greater than or equal to 0 ",
-        }),
-        serviceCompleted: z.number({ message: "invalid service number" }),
-      }),
+        serviceId: z.number().min(1, { message: "Service ID is required" }),
+        serviceCompleted: z.number().min(0, { message: "Invalid service completion status" }),
+      })
     ),
-
     orderStatus: z.object({
-      orderStatus: z
-        .number({ message: "order status is required" })
-        .min(0, { message: "order status must be a valid status number" }),
+      orderStatus: z.number().min(0, { message: "Order status must be a valid status number" }),
     }),
   }),
 
-
+  // Schema for updating an order
   update: z.object({
-    employeeId: z.string({ message: "Employee ID is required" }),
-    customerId: z.string({ message: "customer ID is required" }),
-    vehicleId: z.string({ message: "Vehicle ID is required" }),
-    activeOrder: z.string({ message: "active order status required" }),
+    employeeId: z.number().min(1, { message: "Employee ID is required" }),
+    customerId: z.number().min(1, { message: "Customer ID is required" }),
+    vehicleId: z.number().min(1, { message: "Vehicle ID is required" }),
+    activeOrder: z.number().min(0, { message: "Active order status is required" }),
   }),
+
+  // Schema for order information
   orderInfo: z.object({
-    orderId: z.string({ message: "order ID is required" }),
+    orderId: z.string().nonempty({ message: "Order ID is required" }),
     additionalRequest: z.string().optional(),
     notesForInternalUse: z.string().optional(),
     notesForCustomer: z.string().optional(),
-    additionalRequestsCompleted: z.number().optional(),
+    additionalRequestsCompleted: z.number().min(0).optional(),
   }),
+
+  // Schema for order service
   orderService: z.object({
-    orderId: z.string({ message: "order is required" }),
-    serviceId: z.number({ message: "service is required" }).min(0, {
-      message: "service completion status must be greater than or equal to 0 ",
-    }),
+    orderId: z.string().nonempty({ message: "Order ID is required" }),
+    serviceId: z.number().min(1, { message: "Service ID is required" }),
   }),
+
+  // Schema for order status
   orderStatus: z.object({
-    orderId: z.string({ message: "order ID is required" }),
-    orderStatus: z
-      .number({ message: "order status is required" })
-      .min(0, { message: "order status must be a valid status number" }),
+    orderId: z.string().nonempty({ message: "Order ID is required" }),
+    orderStatus: z.number().min(0, { message: "Order status must be a valid status number" }),
   }),
 };
 

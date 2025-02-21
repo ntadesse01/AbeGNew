@@ -10,16 +10,17 @@ const serviceController = {
 
       const newService = await prisma.commonServices.create({
         data: {
-          serviceName: data.serviceDescription,
+          serviceName: data.serviceName,
           serviceDescription: data.serviceDescription,
         },
       });
+
       // Respond with the created service details
-     return res
-        .status(201)
-        .json({ 
-          success: true,
-          message: "Service created Successfully", data: newService });
+      return res.status(201).json({
+        success: true,
+        message: "Service created successfully",
+        data: newService,
+      });
     } catch (error) {
       next(error);
     }
@@ -28,14 +29,15 @@ const serviceController = {
   // Retrieve all services
   getAll: async (req, res, next) => {
     try {
-      // Fetch all services from the CommonServices table
-      const service = await prisma.commonServices.findMany();
+      // Fetch all services from the commonServices table
+      const services = await prisma.commonServices.findMany();
+
       // Respond with the list of services
-     return res.status(200).json({ 
-        data: service,
+      return res.status(200).json({
+        data: services,
         success: true,
-        message: "Service fetch Successfully",
-       });
+        message: "Services fetched successfully",
+      });
     } catch (error) {
       next(error);
     }
@@ -45,22 +47,26 @@ const serviceController = {
   getSingle: async (req, res, next) => {
     try {
       const { id } = req.params;
+
       // Fetch the service matching the provided ID
       const service = await prisma.commonServices.findUnique({
         where: { id: parseInt(id, 10) },
       });
+
       // Return 404 if the service is not found
       if (!service) {
         return res.status(404).json({
           success: false,
-          message: "Service not found" });
+          message: "Service not found",
+        });
       }
+
       // Respond with the service details
-     return res.status(200).json({ 
-        date: service,
+      return res.status(200).json({
+        data: service,
         success: true,
-        message: "Service is found",
-       });
+        message: "Service found",
+      });
     } catch (error) {
       next(error);
     }
@@ -71,17 +77,19 @@ const serviceController = {
     try {
       const { id } = req.params;
       const data = serviceSchema.update.parse(req.body);
-      //check if service is existed.
 
-      const serviceExisted = await prisma.commonServices.findFirst({
-        where: {id:+id},
-      })
-      if(!serviceExisted) {
+      // Check if the service exists
+      const serviceExists = await prisma.commonServices.findFirst({
+        where: { id: +id },
+      });
+
+      if (!serviceExists) {
         return res.status(404).json({
-          success:false,
+          success: false,
           message: "Service not found",
-        })
+        });
       }
+
       // Update the service in the database
       const updatedService = await prisma.commonServices.update({
         where: { id: parseInt(id, 10) },
@@ -90,14 +98,13 @@ const serviceController = {
           serviceDescription: data.serviceDescription,
         },
       });
+
       // Respond with the updated service details
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "Service updated successfully",
-          data: updatedService,
-        });
+      return res.status(200).json({
+        success: true,
+        message: "Service updated successfully",
+        data: updatedService,
+      });
     } catch (error) {
       next(error);
     }
@@ -109,15 +116,16 @@ const serviceController = {
       const { id } = req.params;
 
       // Check if the service exists before attempting to delete
-      const service = await prisma.commonServices.findFirst({
+      const service = await prisma.commonServices.findUnique({
         where: { id: parseInt(id, 10) },
       });
 
       if (!service) {
         // Respond with 404 if the service doesn't exist
-        return res.status(404).json({ 
+        return res.status(404).json({
           success: false,
-          message: "Service not found" });
+          message: "Service not found",
+        });
       }
 
       // Delete the service by ID
@@ -126,13 +134,11 @@ const serviceController = {
       });
 
       // Respond with a success message
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "Service deleted successfully",
-          data: deletedService,
-        });
+      return res.status(200).json({
+        success: true,
+        message: "Service deleted successfully",
+        data: deletedService,
+      });
     } catch (error) {
       next(error);
     }

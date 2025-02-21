@@ -46,6 +46,13 @@ const employeeSchema = {
         .max(15,{message: "Confirm new password must be no more than 15 characters long."}),
     }),
 
+    login:z.object({
+        email:z.string().email({message:"Invalid Email"}),
+        password:z.string()
+        .min(6,{message:"Password must be at least 6 characters long"})
+        .max(15,{message:"Password must be no more than 15 characters long"}),
+    })
+
 }
 
 export default employeeSchema

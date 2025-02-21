@@ -1,20 +1,23 @@
 import vehicleSchema from "./vehicleSchema.js";
 import prisma from "../../config/prismaClient.js";
 
+
+// Helper function to check if a record exists in the database
+
 const vehicleController = {
   // Create a new vehicle
   create: async (req, res, next) => {
     try {
       // Validate the request body against the schema
       const data = vehicleSchema.create.parse(req.body);
-      //check if the customer exists with this customer id
+      // Check if the customer exists with this customer id
       const customerExists = await prisma.customerIdentifier.findFirst({
         where: { id: +data.customerId },
       });
       if (!customerExists) {
         return res.status(404).json({
           success: false,
-          message: "customer is not found",
+          message: "Customer is not found",
         });
       }
 
@@ -35,7 +38,7 @@ const vehicleController = {
 
       // Respond with the created vehicle details
       return res.status(201).json({
-        success: false,
+        success: true,  // Corrected success flag
         message: "Vehicle created successfully",
         data: newVehicle,
       });
@@ -54,7 +57,7 @@ const vehicleController = {
       return res.status(200).json({
         data: vehicles,
         success: true,
-        message: "Vehicle fetch successfully",
+        message: "Vehicles fetched successfully",  // Corrected message
       });
     } catch (error) {
       next(error);
@@ -83,7 +86,7 @@ const vehicleController = {
       return res.status(200).json({
         data: vehicle,
         success: true,
-        message: "Vehicle is found ",
+        message: "Vehicle found",  // Corrected message
       });
     } catch (error) {
       next(error);
@@ -104,17 +107,17 @@ const vehicleController = {
       if (!vehicleExists) {
         return res.status(404).json({
           success: false,
-          message: "vehicle is not found",
+          message: "Vehicle not found",
         });
       }
-      //check if the customer exists with this customer id
+      // Check if the customer exists with this customer id
       const customerExists = await prisma.customerIdentifier.findFirst({
-        where: { id: data.customerId },
+        where: { id: +data.customerId },  // Added type conversion
       });
       if (!customerExists) {
         return res.status(404).json({
           success: false,
-          message: "customer is not found",
+          message: "Customer not found",
         });
       }
       // Update the vehicle in the database
