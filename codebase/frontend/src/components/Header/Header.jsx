@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom"
+import Logo from "../../assets/images/custom/logo.png"
 
 const Header = () => {
   return (
@@ -24,15 +26,15 @@ const Header = () => {
         </div>
 
         {/* <!-- Header Upper --> */}
-        <div className="header-upper">
+        <div className="header-upper ">
           <div className="auto-container">
             <div className="inner-container">
               {/* <!--Logo--> */}
               <div className="logo-box">
                 <div className="logo">
-                  <a href="/">
-                    <img src="assets/images/custom/logo.png" alt="" />
-                  </a>
+                  <Link to="/">
+                    <img src={Logo} alt="" />
+                  </Link>
                 </div>
               </div>
               <div className="right-column">
@@ -46,21 +48,21 @@ const Header = () => {
                   {/* <!-- Main Menu --> */}
                   <nav className="main-menu navbar-expand-md navbar-light">
                     <div
-                      className="collapse navbar-collapse show clearfix"
+                      // className="collapse navbar-collapse show clearfix"
                       id="navbarSupportedContent"
                     >
                       <ul className="navigation">
                         <li className="dropdown">
-                          <a href="/">Home</a>
+                          <Link to="/">Home</Link>
                         </li>
                         <li className="dropdown">
-                          <a href="/about">About Us</a>
+                          <Link to="/about">About Us</Link>
                         </li>
                         <li className="dropdown">
-                          <a href="/services">Services</a>
+                          <Link to="/services">Services</Link>
                         </li>
                         <li>
-                          <a href="/contact">Contact Us</a>
+                          <Link to="/contact">Contact Us</Link>
                         </li>
                       </ul>
                     </div>
@@ -68,9 +70,9 @@ const Header = () => {
                 </div>
                 <div className="search-btn"></div>
                 <div className="link-btn">
-                  <a href="/login" className="theme-btn btn-style-one">
+                  <Link to="/login" className="theme-btn btn-style-one">
                     Login
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -87,9 +89,9 @@ const Header = () => {
                 {/* <!--Logo--> */}
                 <div className="logo-box">
                   <div className="logo">
-                    <a href="/">
+                    <Link to="/">
                       <img src="assets/images/custom/logo.png" alt="" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="right-column">
@@ -105,9 +107,9 @@ const Header = () => {
                   </div>
                   <div className="search-btn"></div>
                   <div className="link-btn">
-                    <a href="/login" className="theme-btn btn-style-one">
+                    <Link to="/login" className="theme-btn btn-style-one">
                       Login
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -126,9 +128,9 @@ const Header = () => {
 
           <nav className="menu-box">
             <div className="nav-logo">
-              <a href="index.html">
+              <Link to="index.html">
                 <img src="assets/images/logo-two.png" alt="" title="" />
-              </a>
+              </Link>
             </div>
             <div className="menu-outer">
               {/* <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--> */}

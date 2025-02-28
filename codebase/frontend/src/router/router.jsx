@@ -24,13 +24,14 @@ import ServicesManage from "../pages/Admin/ServicesManage";
 import About from "../pages/About/About";
 import PublicLayout from "../layout/PublicLayout";
 import PrivateLayout from "../layout/PrivateLayout";
+import CustomerEdit from "../pages/Admin/CustomerEdit"
+import CustomerProfile from "../pages/Admin/CustomerProfile"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<><PublicLayout/> </>}>
-        {/* public pages */}
-
+        {/*PrivateLayout /Suitable if only non-logged-in users should access these pages */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LogIn />} />
@@ -38,7 +39,7 @@ export const router = createBrowserRouter(
         <Route path="/order-detail" element={<OrderDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
-      {/* Private Pages */}
+      {/* PublicLayout/Clearly defines that these routes are for signed-in users */}
       <Route path="/" element={<><PrivateLayout/> </>}>
         <Route path="/add-customer" element={<AddCustomer />} />
         <Route path="/new-order-step1" element={<NewOrderStep1 />} />
@@ -46,18 +47,18 @@ export const router = createBrowserRouter(
         <Route path="/new-order-step3" element={<NewOrderStep3 />} />
         <Route path="/new-order-step4" element={<NewOrderStep4 />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/add-customer" element={<AddCustomer />} />
+        {/* <Route path="/add-customer" element={<AddCustomer />} /> */}
         <Route path="/add-employee" element={<AddEmployee />} />
         <Route path="/add-vehicle" element={<AddVehicle />} />
         <Route path="/admin" element={<Admin />} />
-        {/* <Route path="/CustomerEdit" element={<CustomerEdit />}/> */}
-        {/* <Route path="/CustomerProfile" element={<CustomerProfile />}/> */}
+        <Route path="/Customer_Edit" element={<CustomerEdit />}/>
+        <Route path="/Customer_Profile" element={<CustomerProfile />}/>
         <Route path="/customers" element={<Customers />} />
         <Route path="/employee-edit" element={<EmployeeEdit />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/services-manage" element={<ServicesManage />} />
       </Route>
-      {/* admin pages */}
+      {/* AdminRoutes/If they handle customer/service/employee management */}
     </>
   )
 );
