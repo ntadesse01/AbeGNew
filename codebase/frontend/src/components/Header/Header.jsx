@@ -1,6 +1,9 @@
 import React from "react";
-import {Link} from "react-router-dom"
-import Logo from "../../assets/images/custom/logo.png"
+import { Link } from "react-router-dom";
+import Logo from "../../assets/images/custom/logo.png";
+import IconBar from "../../assets/images/icons/icon-bar.png";
+import LogoTwo from "../../assets/images/icons/icon-bar-2.png";
+
 
 const Header = () => {
   return (
@@ -13,7 +16,9 @@ const Header = () => {
             <div className="inner-container">
               <div className="left-column">
                 <div className="text">Enjoy the Beso while we fix your car</div>
-                <div className="office-hour">Monday - Saturday 7:00AM - 6:00PM</div>
+                <div className="office-hour">
+                  Monday - Saturday 7:00AM - 6:00PM
+                </div>
               </div>
               <div className="right-column">
                 <div className="phone-number">
@@ -42,7 +47,7 @@ const Header = () => {
                 <div className="nav-outer">
                   {/* <!--Mobile Navigation Toggler--> */}
                   <div className="mobile-nav-toggler">
-                    <img src="assets/images/icons/icon-bar.png" alt="" />
+                    <img src={IconBar} alt="" />
                   </div>
 
                   {/* <!-- Main Menu --> */}
@@ -80,6 +85,9 @@ const Header = () => {
         </div>
         {/* <!--End Header Upper--> */}
 
+        {/* 
+
+
         {/* <!-- Sticky Header  --> */}
         <div className="sticky-header">
           {/* <!-- Header Upper --> */}
@@ -90,7 +98,7 @@ const Header = () => {
                 <div className="logo-box">
                   <div className="logo">
                     <Link to="/">
-                      <img src="assets/images/custom/logo.png" alt="" />
+                      <img src={Logo} alt="Log" />
                     </Link>
                   </div>
                 </div>
@@ -99,7 +107,7 @@ const Header = () => {
                   <div className="nav-outer">
                     {/* <!--Mobile Navigation Toggler--> */}
                     <div className="mobile-nav-toggler">
-                      <img src="assets/images/icons/icon-bar.png" alt="" />
+                      <img src={IconBar} alt="Mobile Menu" />
                     </div>
 
                     {/* <!-- Main Menu --> */}
@@ -128,8 +136,8 @@ const Header = () => {
 
           <nav className="menu-box">
             <div className="nav-logo">
-              <Link to="index.html">
-                <img src="assets/images/logo-two.png" alt="" title="" />
+              <Link to="/">
+                <img src={LogoTwo} alt="Logo" title="Logo" />
               </Link>
             </div>
             <div className="menu-outer">

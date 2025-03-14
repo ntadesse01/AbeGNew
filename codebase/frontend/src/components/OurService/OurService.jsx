@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Service = () => {
+const OurService = () => {
   return (
     <div>
 
-{/* <!-- Services Section --> */}
-        <section className="services-section">
+   {/* <!-- Services Section --> */}
+   <section className="services-section">
             <div className="auto-container">
                 <div className="sec-title style-two">
                     <h2>Our Featured Services</h2>
@@ -66,16 +66,9 @@ const Service = () => {
             </div>
         </section>
 
-
-
-
-
-
-
-
-      
-    </div>
+          
+        </div>
   )
 }
 
-export default Service
+export default OurService

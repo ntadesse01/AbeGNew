@@ -30,7 +30,7 @@ import CustomerProfile from "../pages/Admin/CustomerProfile"
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<><PublicLayout/> </>}>
+      <Route path="/" element={<><PublicLayout/></>}>
         {/*PrivateLayout /Suitable if only non-logged-in users should access these pages */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
@@ -40,7 +40,7 @@ export const router = createBrowserRouter(
         <Route path="/contact" element={<Contact />} />
       </Route>
       {/* PublicLayout/Clearly defines that these routes are for signed-in users */}
-      <Route path="/" element={<><PrivateLayout/> </>}>
+      <Route path="/" element={<><PrivateLayout/></>}>
         <Route path="/add-customer" element={<AddCustomer />} />
         <Route path="/new-order-step1" element={<NewOrderStep1 />} />
         <Route path="/new-order-step2" element={<NewOrderStep2 />} />

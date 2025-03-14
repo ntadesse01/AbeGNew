@@ -1,18 +1,29 @@
 import React from 'react'
-import About from '../About/About'
-import Features from '../../components/Features/Features'
+import About from '../../components/About/About'
+ 
 import VideoSection from '../../components/VideoSection/VideoSection'
-import WhyUs from '../../components/WhyUs/WhyUs'
-import SecVideoSection from '../../components/SecVideoSection/SecVideoSection'
+import Banner from '../../components/Banner/Banner'
+import Banner2 from '../../components/Banner2/Banner2'
+import OurService from '../../components/OurService/OurService'
+import QualityService from '../../components/QualityService/QualityService'
+import WhyYouChooseUs from '../../components/WhyYouChooseUs/WhyYouChooseUs'
+ 
+// import WhyUs from '../../components/WhyUs/WhyUs'
+// import SecVideoSection from '../../components/SecVideoSection/SecVideoSection'
 
 const HomePage = () => {
   return (
     <div>
+
+        <Banner2/>
+        {/* <Banner/> */}
         <About />
-        <Features />
+        <OurService/>
+        <QualityService/>
+        <WhyYouChooseUs/>
         <VideoSection />
-        <WhyUs />
-        <SecVideoSection />
+        {/* <WhyUs /> */}
+        {/* <SecVideoSection /> */}
     </div>
   )
 }

@@ -1,4 +1,6 @@
 import React from 'react'
+import Vban1 from "../../assets/images/custom/misc/vban1.jpg"
+import Vban2 from "../../assets/images/custom/misc/vban2.jpg"
 
 const About = () => {
   return (
@@ -10,8 +12,8 @@ const About = () => {
           <div className="row">
             <div className="col-lg-5">
               <div className="image-box">
-                <img src="assets/images/custom/misc/vban1.jpg" alt="" />
-                <img src="assets/images/custom/misc/vban2.jpg" alt="" />
+              <img src={Vban1} alt="" />
+                <img src={Vban2} alt="" />
                 <div className="year-experience" data-parallax='{"y": 30}'>
                   <strong>17</strong> years <br />
                   Experience

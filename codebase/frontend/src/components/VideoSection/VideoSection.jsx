@@ -1,4 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom"
+import Bg1 from "../../assets/images/background/bg-1.jpg"
+ 
 
 const VideoSection = () => {
   return (
@@ -8,7 +11,9 @@ const VideoSection = () => {
         <div
           data-parallax='{"y": 50}'
           className="sec-bg"
-          // style="background-image: url(assets/images/custom/banner/banner1.jpg);"
+           style={{
+            backgroundImage:`url(${Bg1})`
+          }}
         ></div>
         <div className="auto-container">
           <h5>Working since 1999</h5>
