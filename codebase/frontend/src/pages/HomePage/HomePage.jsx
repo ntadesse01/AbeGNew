@@ -7,6 +7,7 @@ import Banner2 from '../../components/Banner2/Banner2'
 import OurService from '../../components/OurService/OurService'
 import QualityService from '../../components/QualityService/QualityService'
 import WhyYouChooseUs from '../../components/WhyYouChooseUs/WhyYouChooseUs'
+import ScheduleNow from '../../components/ScheduleNow/ScheduleNow'
  
 // import WhyUs from '../../components/WhyUs/WhyUs'
 // import SecVideoSection from '../../components/SecVideoSection/SecVideoSection'
@@ -22,6 +23,7 @@ const HomePage = () => {
         <QualityService/>
         <WhyYouChooseUs/>
         <VideoSection />
+        <ScheduleNow />
         {/* <WhyUs /> */}
         {/* <SecVideoSection /> */}
     </div>
