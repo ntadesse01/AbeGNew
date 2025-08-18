@@ -7,6 +7,7 @@ import Image9 from "../../assets/images/resource/image-9.jpg";
 import backgroundImage from "../../assets/images/background/bg-1.jpg";
 import Image4 from "../../assets/images/resource/image-4.jpg";
 import Bg3 from "../../assets/images/background/bg-3.jpg";
+import Button from "../../components/Button/Button";
 
 const About = () => {
   return (
@@ -23,6 +24,10 @@ const About = () => {
               <Link href="/about">home</Link>
             </li>
             <li>About us</li>
+
+            {/* <Button title={"login"}  />
+            
+            <Button title={"signup"}  /> */}
           </ul>
         </div>
         <h1 data-parallax='{"x": 200}'>Car Repairing</h1>

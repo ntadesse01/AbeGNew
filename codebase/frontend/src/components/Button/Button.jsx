@@ -1,8 +1,16 @@
 import React from 'react'
 
-const Button = () => {
+
+const Button = ({title}) => {
   return (
-    <div>Button</div>
+    <div>
+
+
+<div class="link-btn"><a href="#" class="theme-btn btn-style-one">{title} </a></div>
+
+
+
+    </div>
   )
 }
 
