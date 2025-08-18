@@ -11,7 +11,7 @@ import { isAuth } from "../middleware/authMiddleware.js"
 import employeeController from "../api/employee/employeeController.js"
 import { exceptionHandler } from "../middleware/exceptionHandler.js"
 
-employeeRouter.post("/login",exceptionHandler(employeeController.login))
+appRouter.post("/login",exceptionHandler(employeeController.login))
 appRouter.use("/employee",isAuth, employeeRouter)
 appRouter.use("/customer",isAuth,customerRouter)
 appRouter.use("/order",isAuth,orderRouter)
