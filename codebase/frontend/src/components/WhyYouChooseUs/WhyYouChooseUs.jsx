@@ -1,5 +1,5 @@
 import React from 'react'
-import Image4 from "../../assets/images/resource/image-4.jpg"
+import Image4 from "../../../src/assets/images/background/image-44.jpg"
 
 
 const WhyYouChooseUs = () => {

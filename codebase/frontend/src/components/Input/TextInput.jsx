@@ -1,15 +1,16 @@
 import React from "react";
 
-const TextInput = ({placeholder,type,name}) => {
+const TextInput = ({placeholder,type,name,onChange,value}) => {
   return (
     
       <div className="form-group col-md-12">
         <input
           type={type}
           name={name}
-          value=""
+          value={value}
           placeholder={placeholder}
           required
+          onChange={onChange}
         />
       </div>
     

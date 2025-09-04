@@ -2,11 +2,11 @@ import React from "react";
 import VbanOne from "../../assets/images/custom/misc/vban1.jpg";
 import VbanTwo from "../../assets/images/custom/misc/vban2.jpg";
 import { Link } from "react-router-dom";
-import Image8 from "../../assets/images/resource/image-8.jpg";
-import Image9 from "../../assets/images/resource/image-9.jpg";
-import backgroundImage from "../../assets/images/background/bg-1.jpg";
-import Image4 from "../../assets/images/resource/image-4.jpg";
-import Bg3 from "../../assets/images/background/bg-3.jpg";
+import Image8 from "../../../../../resource/UI-Designs/AbeGarageCustomTemplate/assets/images/resource/image-8.jpg";
+// import Image9 from "../../assets/images/resource/image-9.jpg";
+import backgroundImage from "../../../../frontend/src/assets/images/background/bg-32.jpg";
+import Image4 from "../../../../../resource/UI-Designs/AbeGarageCustomTemplate/assets/images/resource/image-4.jpg";
+import Bg3 from "../../assets/images/background/bg-32.jpg";
 import Button from "../../components/Button/Button";
 
 const About = () => {
@@ -197,7 +197,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* <!-- Why Choose Us Two --> */}
+      {/* <!-- Why Choose Us Two -->
       {/* <section className="why-choose-us-two"> 
         <div className="auto-container">
           <div className="row no-gutters">
@@ -236,7 +236,7 @@ const About = () => {
         </div>
       </section> */}
 
-      {/* 
+      {/*  */}
          
     {/* <!-- Video Section --> */}
       <section className="video-section">

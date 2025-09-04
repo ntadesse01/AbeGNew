@@ -1,7 +1,7 @@
 import React from 'react'
-import Image4 from "../../assets/images/resource/image-4.jpg"
+import Image4 from "../../../src/assets/images/background/image-444.jpg"
 import { Link } from 'react-router-dom'
-import Bg3 from "../../assets/images/background/bg-3.jpg";
+import Bg3 from "../../../src/assets/images/background/bg-32.jpg";
 
  
 

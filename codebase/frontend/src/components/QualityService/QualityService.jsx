@@ -1,5 +1,5 @@
 import React from 'react'
-import Image3 from "../../assets/images/resource/image-3.jpg"
+import Image3 from "../../../src/assets/images/background/bg-333.jpg"
 
 const QualityService = () => {
   return (

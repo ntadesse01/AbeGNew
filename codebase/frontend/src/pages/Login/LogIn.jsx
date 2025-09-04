@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import TextInput from "../../components/Input/TextInput";
- 
+import axios from "../../config/axios"
+
 
 const LogIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    const data = {
+      email: email,
+      password: password
+    }
+    try {
+      const result = await axios.post("/login",data)
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
     <div>
       <section className="contact-section">
@@ -16,11 +33,29 @@ const LogIn = () => {
             <div className="form-column col-lg-7">
               <div className="inner-column">
                 {/* <!--Contact Form--> */}
-                <div className="contact-form">
-                  <form method="post" action="sendemail.php" id="contact-form">
+                <form method="post" onSubmit={handleSubmit}>
+                  <div className="contact-form">
                     <div className="row clearfix">
-                      <TextInput name="email" type="text" placeholder="Your Email" />
-                      <TextInput name="password" type="password" placeholder="Password" />
+                      <TextInput
+                        name="email"
+                        type="text"
+                        placeholder="Your Email"
+                        value={email}
+                        onChange={(e) => {
+                          e.preventDefault();
+                          setEmail(e.target.value);
+                        }}
+                      />
+                      <TextInput
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => {
+                          e.preventDefault();
+                          setPassword(e.target.value);
+                        }}
+                      />
 
                       <div className="form-group col-md-12">
                         <input
@@ -39,8 +74,8 @@ const LogIn = () => {
                         </button>
                       </div>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
                 {/* <!--End Contact Form--> */}
               </div>
             </div>

@@ -1,6 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom"
-import Bg1 from "../../assets/images/background/bg-1.jpg"
+// import Bg1 from "../../assets/images/background/bg-1.jpg"
+import Bg1 from "../../../../frontend/src/assets/images/background/bg-tuneup-33.jpg"
+
+
+
  
 
 const VideoSection = () => {
