@@ -1,25 +1,32 @@
-import React, { useState } from "react";
-import TextInput from "../../components/Input/TextInput";
-import axios from "../../config/axios"
+ 
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const loginFormSchema = z.object({
+  email: z.string().email({ message: "Invalid Email" }),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters long" })
+    .max(15, { message: "Password must be no more than 15 characters long" }),
+});
 
 const LogIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(email, password);
-    const data = {
-      email: email,
-      password: password
-    }
-    try {
-      const result = await axios.post("/login",data)
-    } catch (error) {
-      console.log(error)
-    }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginFormSchema),
+    mode:"onChange"
+  });
+  const onSubmit = (data) => {
+    console.log(data);
   };
+
+  // console.log(watch());
+  console.log(errors);
   return (
     <div>
       <section className="contact-section">
@@ -33,29 +40,30 @@ const LogIn = () => {
             <div className="form-column col-lg-7">
               <div className="inner-column">
                 {/* <!--Contact Form--> */}
-                <form method="post" onSubmit={handleSubmit}>
+                <form method="post" onSubmit={handleSubmit(onSubmit)}>
                   <div className="contact-form">
                     <div className="row clearfix">
-                      <TextInput
-                        name="email"
-                        type="text"
-                        placeholder="Your Email"
-                        value={email}
-                        onChange={(e) => {
-                          e.preventDefault();
-                          setEmail(e.target.value);
-                        }}
-                      />
-                      <TextInput
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => {
-                          e.preventDefault();
-                          setPassword(e.target.value);
-                        }}
-                      />
+                      <div className="form-group col-md-12">
+                        <input
+                          type={"email"}
+                          {...register("email")}
+                          placeholder={"Enter your Email"}
+                        />
+                      </div>
+                      <p className="text-red-500 text-xs">
+                        {errors?.email?.message}
+                      </p>
+
+                      <div className="form-group col-md-12">
+                        <input
+                          type={"password"}
+                          {...register("password")}
+                          placeholder={"*******"}
+                        />
+                      </div>
+                      <p className="text-red-500 text-xs">
+                        {errors?.password?.message}
+                      </p>
 
                       <div className="form-group col-md-12">
                         <input

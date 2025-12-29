@@ -1,7 +1,31 @@
 import React from "react";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDelete } from "react-icons/md";
+
 
 const ServicesManage = () => {
+  const services = [
+    {
+      id: 1,
+      title: "Oil Change",
+      description:
+        "Every 5000 kilometers or so, you need to change the oil in your car to keep your engine in the best possible shape.",
+    },
+    {
+      id: 2,
+      title: "Engine Service",
+      description:
+        "Keep your engine running smoothly with professional service and repair.",
+    },
+    {
+      id: 3,
+      title: "Tire & Wheel Alignment",
+      description:
+        "Ensure safety and performance with regular tire checks and wheel alignment.",
+    },
+
+  ];
+  
+ 
   return (
     <div>
       <div className="contact-section">

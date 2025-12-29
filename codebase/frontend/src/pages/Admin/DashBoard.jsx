@@ -1,4 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+
+
+
+const dashboardItems = [
+  { role: "Open for All", title: "All Orders", link: "/orders", icon: "flaticon-power" },
+  { role: "Open for Leaders", title: "New Orders", link: "/new-order-step1", icon: "flaticon-gearbox" },
+  { role: "Open for Admins", title: "Employees", link: "/employees", icon: "flaticon-brake-disc" },
+  { role: "Open for Admins", title: "Add Employee", link: "/employee-edit", icon: "flaticon-car-engine" },
+  { role: "Service and Repairs", title: "Engine Service & Repair", link: "/services/engine", icon: "flaticon-tire" },
+  { role: "Service and Repairs", title: "Tyre and Wheels", link: "/services/tyres", icon: "flaticon-spray-gun" },
+  { role: "Service and Repairs", title: "Denting and Painting", link: "/services/painting", icon: "flaticon-air-conditioning" },
+  { role: "Service and Repairs", title: "Engine Service and Repair", link: "/services/engine-repair", icon: "flaticon-car-service" },
+  { role: "Service and Repairs", title: "Tyre & Wheels", link: "/services/tyres-wheels", icon: "flaticon-car-service" },
+];
 
 const DashBoard = () => {
     return (

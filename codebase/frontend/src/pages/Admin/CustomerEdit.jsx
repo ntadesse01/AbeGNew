@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextInput from '../../components/Input/TextInput';
- 
 
 const CustomerEdit = () => {
+  const [customer, setCustomer] = useState({
+    email: "mihiretu.tigistu@example.com",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    isActive: true,
+  });
+
+  const handleChange = (e) => {
+    const { name, type, checked, value } = e.target;
+    setCustomer((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    console.log("Updated customer data:", customer);
+
+    //  Save or pass data
+    // TODO: send to backend or update context/global state
+    // fetch("/api/customers", {
+    //   method: "PUT",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(customer),
+    // });
   };
 
   return (
@@ -15,33 +38,55 @@ const CustomerEdit = () => {
           <h2>Edit Customer</h2>
         </div>
         <div className="customer-info">
-          <p>Customer Email: mihiretu.tigistu@example.com</p>
+          <p>Customer Email: {customer.email}</p>
         </div>
 
-        {/* Form Column */}
         <div className="form-column col-lg-7">
           <div className="inner-column">
-            {/* Contact Form */}
             <div className="contact-form">
               <form onSubmit={handleSubmit} id="contact-form">
                 <div className="row clearfix">
-                  <TextInput name="email" type="email" placeholder="Enter customer email" />
-                  <TextInput name="firstName" type="text" placeholder="Enter customer first name" />
-                  <TextInput name="lastName" type="text" placeholder="Enter customer last name" />
-                  <TextInput name="phone" type="text" placeholder="Enter customer phone" />
+                  <TextInput
+                    name="email"
+                    type="email"
+                    value={customer.email}
+                    onChange={handleChange}
+                    placeholder="Enter customer email"
+                  />
+                  <TextInput
+                    name="firstName"
+                    type="text"
+                    value={customer.firstName}
+                    onChange={handleChange}
+                    placeholder="Enter customer first name"
+                  />
+                  <TextInput
+                    name="lastName"
+                    type="text"
+                    value={customer.lastName}
+                    onChange={handleChange}
+                    placeholder="Enter customer last name"
+                  />
+                  <TextInput
+                    name="phone"
+                    type="text"
+                    value={customer.phone}
+                    onChange={handleChange}
+                    placeholder="Enter customer phone"
+                  />
 
-                  {/* Hidden botcheck input (if needed) */}
-                  <input type="hidden" name="form_botcheck" value="" />
-
-                  {/* Checkbox */}
                   <div className="form-group col-md-12">
                     <label>
-                      <input type="checkbox" name="isActive" />
+                      <input
+                        type="checkbox"
+                        name="isActive"
+                        checked={customer.isActive}
+                        onChange={handleChange}
+                      />
                       ✔️ Is Active Customer
                     </label>
                   </div>
 
-                  {/* Submit Button */}
                   <div className="form-group col-md-12">
                     <button className="theme-btn btn-style-one" type="submit">
                       <span>UPDATE</span>
