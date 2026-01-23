@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {useLoginMutation} from "../../servics/authService"
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Invalid Email" }),
@@ -12,6 +13,7 @@ const loginFormSchema = z.object({
 });
 
 const LogIn = () => {
+  const [login,{isLoading,isSuccess,isError,error}]=useLoginMutation() 
   const {
     register,
     handleSubmit,
@@ -21,12 +23,16 @@ const LogIn = () => {
     resolver: zodResolver(loginFormSchema),
     mode:"onChange"
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    await login(data);
   };
 
   // console.log(watch());
-  console.log(errors);
+  // console.log(errors);
+  console.log(isError)
+  console.log(isLoading)
+  console.log(isSuccess)
+  console.log(error)
   return (
     <div>
       <section className="contact-section">
@@ -78,7 +84,7 @@ const LogIn = () => {
                           type="submit"
                           data-loading-text="Please wait..."
                         >
-                          <span>Login</span>
+                          <span>{isLoading?"Loding":"Login"}</span>
                         </button>
                       </div>
                     </div>
